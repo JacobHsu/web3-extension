@@ -4,6 +4,7 @@
   "description": "[Quick Start](https://gulpjs.com/docs/en/getting-started/quick-start)",
   "main": "index.js",
   "scripts": {
+    "start": "gulp dev:extension",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,6 +18,7 @@
   },
   "homepage": "https://github.com/JacobHsu/web3-extension#readme",
   "devDependencies": {
-    "gulp": "^4.0.2"
+    "gulp": "^4.0.2",
+    "gulp-watch": "^5.0.1"
   }
 }
