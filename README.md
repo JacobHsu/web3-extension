@@ -35,3 +35,48 @@ gulp.task('dev:extension',
 ## dev:copy
 
 `$ npm install --save-dev gulp gulp-watch`
+
+## build js
+
+`$ npm install --save-dev lodash.assign`
+watchify
+browserify
+envify
+gulp-util
+vinyl-source-stream
+vinyl-buffer
+gulp-sourcemaps
+babelify
+brfs
+
+
+
+babel-eslint
+
+### dependencies
+
+npm install browserify-derequire
+loglevel
+metamask-inpage-provider
+post-message-stream
+npm i web3 web3-stream-provider
+@babel/runtime
+
+`npm i ethjs`  會幫裝　core-js@2.6.11　提供　web3　使用
+
+#### contentscript.js
+
+npm i dnode 
+npm i extensionizer
+extension-port-stream
+
+### more
+
+core-js
+
+> Error: Cannot find module 'core-js/modules/es6.function.name' from 'C:\research\web3-extension\node_modules\web3\dist'
+
+closed: `npm i ethjs`
+
+npm WARN deprecated core-js@2.6.11: core-js@<3 is no longer maintained and not recommended
+for usage due to the number of issues. Please, upgrade your dependencies to the actual version of core-js@3.

@@ -18,7 +18,40 @@
   },
   "homepage": "https://github.com/JacobHsu/web3-extension#readme",
   "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.5.5",
+    "@babel/plugin-transform-runtime": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.5.5",
+    "babel-eslint": "^10.0.3",
+    "babelify": "^10.0.0",
+    "brfs": "^2.0.2",
+    "browserify": "^16.5.0",
+    "browserify-transform-tools": "^1.7.0",
+    "envify": "^4.1.0",
     "gulp": "^4.0.2",
-    "gulp-watch": "^5.0.1"
+    "gulp-babel": "^7.0.0",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-util": "^3.0.8",
+    "gulp-watch": "^5.0.1",
+    "lodash.assign": "^4.2.0",
+    "vinyl-buffer": "^1.0.1",
+    "vinyl-source-stream": "^2.0.0",
+    "watchify": "^3.11.1"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.7.6",
+    "browserify-derequire": "^1.0.1",
+    "dnode": "^1.2.2",
+    "ethjs": "^0.4.0",
+    "extension-port-stream": "^1.0.0",
+    "extensionizer": "^1.0.1",
+    "loglevel": "^1.6.6",
+    "metamask-inpage-provider": "^4.0.2",
+    "post-message-stream": "^3.0.0",
+    "web3": "^1.2.4",
+    "web3-stream-provider": "^4.0.0"
   }
 }
