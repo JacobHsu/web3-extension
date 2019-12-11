@@ -1,0 +1,22 @@
+{
+  "name": "web3-extension",
+  "version": "1.0.0",
+  "description": "[Quick Start](https://gulpjs.com/docs/en/getting-started/quick-start)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JacobHsu/web3-extension.git"
+  },
+  "author": "Jacob Hsu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JacobHsu/web3-extension/issues"
+  },
+  "homepage": "https://github.com/JacobHsu/web3-extension#readme",
+  "devDependencies": {
+    "gulp": "^4.0.2"
+  }
+}
