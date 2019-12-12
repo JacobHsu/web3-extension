@@ -48,10 +48,13 @@ vinyl-buffer
 gulp-sourcemaps
 babelify
 brfs
-
-
+gulp-livereload
 
 babel-eslint
+
+#### debug
+gulp-livereload 5.0\Bin\MSBuild.exe
+
 
 ### dependencies
 

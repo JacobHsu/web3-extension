@@ -8,6 +8,7 @@ const sourcemaps = require('gulp-sourcemaps')
 const source = require('vinyl-source-stream')
 const buffer = require('vinyl-buffer')
 const assign = require('lodash.assign')
+const livereload = require('gulp-livereload')
 
 const browserPlatforms = [
     'firefox',
@@ -26,6 +27,24 @@ const copyDevTaskNames = []
 createCopyTasks('locales', {
   source: './app/_locales/',
   destinations: commonPlatforms.map(platform => `./dist/${platform}/_locales`),
+})
+createCopyTasks('images', {
+  source: './app/images/',
+  destinations: commonPlatforms.map(platform => `./dist/${platform}/images`),
+})
+
+createCopyTasks('html', {
+  source: './app/',
+  pattern: '/*.html',
+  destinations: commonPlatforms.map(platform => `./dist/${platform}`),
+})
+
+// copy extension
+
+createCopyTasks('manifest', {
+  source: './app/',
+  pattern: '/*.json',
+  destinations: browserPlatforms.map(platform => `./dist/${platform}`),
 })
 
 function createCopyTasks (label, opts) {
