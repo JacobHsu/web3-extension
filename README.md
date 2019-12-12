@@ -52,6 +52,13 @@ gulp-livereload
 
 babel-eslint
 
+
+gulp-sass
+gulp-autoprefixer
+gulp-rtlcss
+gulp-rename
+
+
 #### debug
 gulp-livereload 5.0\Bin\MSBuild.exe
 
@@ -66,6 +73,11 @@ npm i web3 web3-stream-provider
 @babel/runtime
 
 `npm i ethjs`  會幫裝　core-js@2.6.11　提供　web3　使用
+
+pify
+end-of-stream
+react-tooltip-component
+react-select
 
 #### contentscript.js
 
@@ -83,3 +95,46 @@ closed: `npm i ethjs`
 
 npm WARN deprecated core-js@2.6.11: core-js@<3 is no longer maintained and not recommended
 for usage due to the number of issues. Please, upgrade your dependencies to the actual version of core-js@3.
+
+
+### gulp
+
+#### css
+
+```js
+// high level tasks
+gulp.task('dev:extension',
+  gulp.series(
+    'dev:scss',
+    gulp.parallel(
+      'dev:extension:js',
+      'dev:copy'
+    )
+  )
+)
+```
+
+將scss輸出到 css/output
+```js
+// scss compilation and autoprefixing tasks
+gulp.task('dev:scss', createScssBuildTask({
+  src: 'ui/app/css/index.scss',
+  dest: 'ui/app/css/output',
+  devMode: true,
+  pattern: 'ui/app/**/*.scss',
+}))
+```
+
+dev:copy 再將輸出的css 複製到專案輸出
+```js
+createCopyTasks('css', {
+  source: './ui/app/css/output/',
+  destinations: commonPlatforms.map(platform => `./dist/${platform}`),
+})
+```
+
+** temp hidden **
+\ui\app\css\index.scss
+
+note //@import '../../../node_modules/react-select/dist/react-select';
+

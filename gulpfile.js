@@ -9,6 +9,13 @@ const source = require('vinyl-source-stream')
 const buffer = require('vinyl-buffer')
 const assign = require('lodash.assign')
 const livereload = require('gulp-livereload')
+const manifest = require('./app/manifest.json')
+const sass = require('gulp-sass')
+const autoprefixer = require('gulp-autoprefixer')
+const rtlcss = require('gulp-rtlcss')
+const rename = require('gulp-rename')
+const pify = require('pify')
+const endOfStream = pify(require('end-of-stream'))
 
 const browserPlatforms = [
     'firefox',
@@ -31,6 +38,11 @@ createCopyTasks('locales', {
 createCopyTasks('images', {
   source: './app/images/',
   destinations: commonPlatforms.map(platform => `./dist/${platform}/images`),
+})
+
+createCopyTasks('css', {
+  source: './ui/app/css/output/',
+  destinations: commonPlatforms.map(platform => `./dist/${platform}`),
 })
 
 createCopyTasks('html', {
@@ -294,9 +306,55 @@ gulp.task('dev:copy',
   )
 )
 
+// scss compilation and autoprefixing tasks
+gulp.task('dev:scss', createScssBuildTask({
+  src: 'ui/app/css/index.scss',
+  dest: 'ui/app/css/output',
+  devMode: true,
+  pattern: 'ui/app/**/*.scss',
+}))
+
+function createScssBuildTask ({ src, dest, devMode, pattern }) {
+  return function () {
+    if (devMode) {
+      watch(pattern, async (event) => {
+        const stream = buildScss()
+        await endOfStream(stream)
+        livereload.changed(event.path)
+      })
+      return buildScssWithSourceMaps()
+    }
+    return buildScss()
+  }
+
+  function buildScssWithSourceMaps () {
+    return gulp.src(src)
+      .pipe(sourcemaps.init())
+      .pipe(sass().on('error', sass.logError))
+      .pipe(sourcemaps.write())
+      .pipe(autoprefixer())
+      .pipe(gulp.dest(dest))
+      .pipe(rtlcss())
+      .pipe(rename({ suffix: '-rtl' }))
+      .pipe(sourcemaps.write())
+      .pipe(gulp.dest(dest))
+  }
+
+  function buildScss () {
+    return gulp.src(src)
+      .pipe(sass().on('error', sass.logError))
+      .pipe(autoprefixer())
+      .pipe(gulp.dest(dest))
+      .pipe(rtlcss())
+      .pipe(rename({ suffix: '-rtl' }))
+      .pipe(gulp.dest(dest))
+  }
+}
+
 // high level tasks
 gulp.task('dev:extension',
   gulp.series(
+    'dev:scss',
     gulp.parallel(
       'dev:extension:js',
       'dev:copy'
