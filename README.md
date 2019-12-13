@@ -58,6 +58,71 @@ gulp-autoprefixer
 gulp-rtlcss
 gulp-rename
 
+## ui.js
+
+react-devtools
+
+    "eth-block-tracker": "^4.4.2",
+    "eth-contract-metadata": "^1.11.0",
+    "eth-ens-namehash": "^2.0.8",
+    "eth-json-rpc-errors": "^1.1.0",
+    "eth-json-rpc-filters": "^4.1.1",
+    "eth-json-rpc-infura": "^4.0.1",
+    "eth-json-rpc-middleware": "^4.2.0",
+    "eth-keyring-controller": "^5.3.0",
+    "eth-ledger-bridge-keyring": "^0.2.0",
+    "eth-method-registry": "^1.2.0",
+    "eth-phishing-detect": "^1.1.4",
+    "eth-query": "^2.1.2",
+    "eth-sig-util": "^2.3.0",
+    "eth-token-tracker": "^1.1.10",
+    "eth-trezor-keyring": "^0.4.0",
+    deep-extend
+    deep-freeze-strict
+
+    "ethereumjs-abi": "^0.6.4",
+    "ethereumjs-tx": "1.3.7",
+    "ethereumjs-util": "5.1.0",
+    "ethereumjs-wallet": "^0.6.0",
+    "etherscan-link": "^1.0.2",
+
+    abortcontroller-polyfill
+    remote-redux-devtools
+
+    "@material-ui/core": "1.0.0",
+    "@sentry/browser": "^4.1.1",
+    "@zxing/library": "^0.8.0",
+
+    detectrtc
+    ramda
+
+    pubnub
+    qrcode-generator
+    copy-to-clipboard
+    boron
+
+    luxon
+    abi-decoder
+    currency-formatter
+    textarea-caret
+    lodash.debounce
+    lodash.shuffle
+
+    metamask-logo
+    debounce
+    fuse.js
+    webrtc-adapter
+
+    jazzicon
+    valid-url
+    detect-node
+
+    "ethjs-contract": "^0.2.3",
+    "ethjs-ens": "^2.0.0",
+    "ethjs-query": "^0.3.4",
+
+    c3
+    d3
 
 #### debug
 gulp-livereload 5.0\Bin\MSBuild.exe

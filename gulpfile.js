@@ -104,7 +104,8 @@ function performCopy () {
 // build js
 const buildJsFiles = [
     'inpage',
-    'contentscript'
+    'contentscript',
+    'ui',
 ]
 
 // bundle tasks
