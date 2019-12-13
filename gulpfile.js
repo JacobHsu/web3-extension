@@ -9,6 +9,7 @@ const source = require('vinyl-source-stream')
 const buffer = require('vinyl-buffer')
 const assign = require('lodash.assign')
 const livereload = require('gulp-livereload')
+const del = require('del')
 const manifest = require('./app/manifest.json')
 const sass = require('gulp-sass')
 const autoprefixer = require('gulp-autoprefixer')
@@ -16,6 +17,22 @@ const rtlcss = require('gulp-rtlcss')
 const rename = require('gulp-rename')
 const pify = require('pify')
 const endOfStream = pify(require('end-of-stream'))
+
+const packageJSON = require('./package.json')
+const dependencies = Object.keys(packageJSON && packageJSON.dependencies || {})
+const materialUIDependencies = ['@material-ui/core']
+const reactDepenendencies = dependencies.filter(dep => dep.match(/react/))
+const d3Dependencies = ['c3', 'd3']
+
+const externalDependenciesMap = {
+  background: [
+    '3box',
+  ],
+  ui: [
+    ...materialUIDependencies, ...reactDepenendencies, ...d3Dependencies,
+  ],
+}
+
 
 const browserPlatforms = [
     'firefox',
@@ -109,7 +126,29 @@ const buildJsFiles = [
 ]
 
 // bundle tasks
+createTasksForBuildJsDeps({ filename: 'ui-libs', key: 'ui' })
 createTasksForBuildJsExtension({ buildJsFiles, taskPrefix: 'dev:extension:js', devMode: true })
+
+function createTasksForBuildJsDeps ({ key, filename }) {
+  console.log(111,'createTasksForBuildJsDeps' )
+  const destinations = browserPlatforms.map(platform => `./dist/${platform}`)
+
+  const bundleTaskOpts = Object.assign({
+    buildSourceMaps: true,
+    sourceMapDir: '../sourcemaps',
+    minifyBuild: true,
+    devMode: false,
+  })
+console.log(`${key} ${filename}`)
+  gulp.task(`build:extension:js:deps:${key} ${filename}`, bundleTask(Object.assign({
+    label: filename,
+    filename: `${filename}.js`,
+    destinations,
+    buildLib: true,
+    dependenciesToBundle: externalDependenciesMap[key],
+  }, bundleTaskOpts)))
+}
+
 
 function createTasksForBuildJsExtension ({ buildJsFiles, taskPrefix, devMode, testing, bundleTaskOpts = {} }) {
     // inpage must be built before all other scripts:
@@ -352,9 +391,16 @@ function createScssBuildTask ({ src, dest, devMode, pattern }) {
   }
 }
 
+// clean dist
+
+gulp.task('clean', function clean () {
+  return del(['./dist/*'])
+})
+
 // high level tasks
 gulp.task('dev:extension',
   gulp.series(
+    'clean',
     'dev:scss',
     gulp.parallel(
       'dev:extension:js',

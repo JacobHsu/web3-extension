@@ -21,6 +21,7 @@ gulp.task('dev:copy',
   )
 )
 
+// task 要被呼叫 gulp dev:extension 呼叫 gulp.task('dev:extension'  parallel 再呼叫 gulp.task('dev:copy',
 // high level tasks
 gulp.task('dev:extension',
   gulp.series(
@@ -32,9 +33,41 @@ gulp.task('dev:extension',
 )
 ```
 
+## dev:extension:js
+
+```js
+// high level tasks
+gulp.task('dev:extension',
+  gulp.series(
+    'dev:scss',
+    gulp.parallel(
+      'dev:extension:js',
+      'dev:copy'
+    )
+  )
+)
+```
+
+```js
+// bundle tasks
+createTasksForBuildJsExtension({ buildJsFiles, taskPrefix: 'dev:extension:js', devMode: true })
+taskPrefix: 'dev:extension:js'
+createTasksForBuildJs({ rootDir, taskPrefix, bundleTaskOpts, destinations, buildPhase1, buildPhase2 })
+
+ gulp.task(`${taskPrefix}:${jsFile}`, bundleTask(Object.assign({
+
+ Starting 'dev:extension:js:ui'   
+```
+
+
+
 ## dev:copy
 
 `$ npm install --save-dev gulp gulp-watch`
+
+## clean
+
+`$ npm install -D del`
 
 ## build js
 

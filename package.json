@@ -31,6 +31,7 @@
     "brfs": "^2.0.2",
     "browserify": "^16.5.0",
     "browserify-transform-tools": "^1.7.0",
+    "del": "^5.1.0",
     "envify": "^4.1.0",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^7.0.1",
